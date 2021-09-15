@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script src="static/js/echarts.min.js"></script>
+  <title>Music Visualization</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/img/favicon.png" rel="icon">
+  <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="static/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mamba - v2.0.1
+  * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+      <div class="contact-info float-left">
+        <i class="icofont-envelope"></i><a href="mailto:001234@qq.com">001234@qq.com</a>
+        <i class="icofont-phone"></i> +123 4567 8901
+      </div>
+      <div class="social-links float-right">
+        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="skype"><i class="icofont-skype"></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container">
+
+      <div class="logo float-left">
+        <h1 class="text-light"><a href="/qianduan"><span>Music homepage</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="qianduan.html"><img src="static/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu float-right d-none d-lg-block">
+         <ul>
+          <li class="active"><a href="/qianduan">主页</a></li>
+          <li><a href="/word1">音乐信息</a></li>
+          <li><a href="/word2">歌曲信息</a></li>
+          <li><a href="/word3">团队</a></li>
+          <li><a href="/index">可视化</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+      <section class="counts section-bg">
+      <div class="container">
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            <div id="main" style="width: 100%;height:300px"></div>
+      </div>
+    </section>
+  <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+    tooltip: {
+      trigger: "axis"
+    },
+    legend: {
+      top: "0%",
+      data: ["虾米音乐", "酷我音乐", "酷狗音乐", "网易云音乐", "QQ音乐"],
+      selected:{
+
+            '酷我音乐':false,
+            '酷狗音乐':false,
+            '虾米音乐':false,
+            'QQ音乐':false,
+        },
+      textStyle: {
+        color: "black",
+        fontSize: "12"
+      }
+    },
+
+    grid: {
+      left: "10",
+      top: "30",
+      right: "10",
+      bottom: "10",
+      containLabel: true
+    },
+    xAxis: [
+      {
+        type: "category",
+        boundaryGap: false,
+        // x轴更换数据
+        data: [
+          "2019.10",
+          "2019.12",
+          "2020.02",
+          "2020.04",
+          "2020.06",
+          "2020.08",
+          "2020.10",
+            "   "
+
+        ],
+        // 文本颜色为rgba(255,255,255,.6)  文字大小为 12
+        axisLabel: {
+          textStyle: {
+            color: "#00ffff",
+            fontSize: 12
+          }
+        },
+        // x轴线的颜色为   rgba(255,255,255,.2)
+        axisLine: {
+          lineStyle: {
+              color: "rgba(255,255,255,.2)"
+          }
+        }
+      }
+    ],
+    yAxis: [
+      {
+        type: "value",
+        axisTick: { show: false },
+        axisLine: {
+          lineStyle: {
+            color: "rgba(255,255,255,.1)"
+          }
+        },
+        axisLabel: {
+          textStyle: {
+            color: "#00ffff",
+            fontSize: 12
+          }
+        },
+        // 修改分割线的颜色
+        splitLine: {
+          lineStyle: {
+            color: "rgba(255,255,255,.1)"
+          }
+        }
+      }
+    ],
+    series: [
+      {
+        name: "虾米音乐",
+        type: "line",
+        smooth: true,
+        // 单独修改当前线条的样式
+        lineStyle: {
+          color: "#0184d5",
+          width: "2"
+        },
+        // 填充颜色设置
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(
+            0,
+            0,
+            0,
+            1,
+            [
+              {
+                offset: 0,
+                color: "rgba(1, 132, 213, 0.4)" // 渐变色的起始颜色
+              },
+              {
+                offset: 0.8,
+                color: "rgba(1, 132, 213, 0.1)" // 渐变线的结束颜色
+              }
+            ],
+            false
+          ),
+          shadowColor: "rgba(0, 0, 0, 0.1)"
+        },
+        // 设置拐点
+        symbol: "circle",
+        // 拐点大小
+        symbolSize: 8,
+        // 开始不显示拐点， 鼠标经过显示
+        showSymbol: false,
+        // 设置拐点颜色以及边框
+        itemStyle: {
+          color: "#0184d5",
+          borderColor: "rgba(221, 220, 107, .1)",
+          borderWidth: 12
+        },
+        data: [200000, 210000, 205000, 215000, 213000, 216000, 212000]
+      },
+      {
+        name: "酷我音乐",
+        type: "line",
+        smooth: true,
+        lineStyle: {
+          normal: {
+            color: "#00ffff",
+            width: 2
+          }
+        },
+        areaStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: "rgba(0, 216, 135, 0.4)"
+                },
+                {
+                  offset: 0.8,
+                  color: "rgba(0, 216, 135, 0.1)"
+                }
+              ],
+              false
+            ),
+            shadowColor: "rgba(0, 0, 0, 0.1)"
+          }
+        },
+        // 设置拐点 小圆点
+        symbol: "circle",
+        // 拐点大小
+        symbolSize: 5,
+        // 设置拐点颜色以及边框
+        itemStyle: {
+          color: "#00d887",
+          borderColor: "rgba(221, 220, 107, .1)",
+          borderWidth: 12
+        },
+        // 开始不显示拐点， 鼠标经过显示
+        showSymbol: false,
+        data:[250000, 232000, 191000, 234000, 290000, 330000, 310000]
+      } ,     {
+        name: "酷狗音乐",
+        type: "line",
+        smooth: true,
+        lineStyle: {
+          normal: {
+            color: "#006ced",
+            width: 2
+          }
+        },
+        areaStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: "rgba(0, 216, 135, 0.4)"
+                },
+                {
+                  offset: 0.8,
+                  color: "rgba(0, 216, 135, 0.1)"
+                }
+              ],
+              false
+            ),
+            shadowColor: "rgba(0, 0, 0, 0.1)"
+          }
+        },
+        // 设置拐点 小圆点
+        symbol: "circle",
+        // 拐点大小
+        symbolSize: 5,
+        // 设置拐点颜色以及边框
+        itemStyle: {
+          color: "#006ced",
+          borderColor: "rgba(221, 220, 107, .1)",
+          borderWidth: 12
+        },
+        // 开始不显示拐点， 鼠标经过显示
+        showSymbol: false,
+        data:[450000, 432000, 401000, 454000, 490000, 530000, 510000]
+      },  {
+        name: "网易云音乐",
+        type: "line",
+        smooth: true,
+        lineStyle: {
+          normal: {
+            color: "#ffa800",
+            width: 2
+          }
+        },
+        areaStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: "rgba(0, 216, 135, 0.4)"
+                },
+                {
+                  offset: 0.8,
+                  color: "rgba(0, 216, 135, 0.1)"
+                }
+              ],
+              false
+            ),
+            shadowColor: "rgba(0, 0, 0, 0.1)"
+          }
+        },
+        // 设置拐点 小圆点
+        symbol: "circle",
+        // 拐点大小
+        symbolSize: 5,
+        // 设置拐点颜色以及边框
+        itemStyle: {
+          color: "#ffa800",
+          borderColor: "rgba(221, 220, 107, .1)",
+          borderWidth: 12
+        },
+        // 开始不显示拐点， 鼠标经过显示
+        showSymbol: false,
+        data:[620000, 632000, 601000, 634000, 690000, 730000, 720000]
+      }, {
+        name: "QQ音乐",
+        type: "line",
+        smooth: true,
+        lineStyle: {
+          normal: {
+            color: "#ff3000",
+            width: 2
+          }
+        },
+        areaStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: "rgba(0, 216, 135, 0.4)"
+                },
+                {
+                  offset: 0.8,
+                  color: "rgba(0, 216, 135, 0.1)"
+                }
+              ],
+              false
+            ),
+            shadowColor: "rgba(0, 0, 0, 0.1)"
+          }
+        },
+        // 设置拐点 小圆点
+        symbol: "circle",
+        // 拐点大小
+        symbolSize: 5,
+        // 设置拐点颜色以及边框
+        itemStyle: {
+          color: "#ff3000",
+          borderColor: "rgba(221, 220, 107, .1)",
+          borderWidth: 12
+        },
+        // 开始不显示拐点， 鼠标经过显示
+        showSymbol: false,
+        data:[820000, 932000, 901000, 933000, 890000, 830000, 812000]
+      }
+    ]
+  };
+  myChart.setOption(option);
+  // 4. 让图表跟随屏幕自动的去适应
+  window.addEventListener("resize", function() {
+    myChart.resize();
+  });
+        myChart.setOption(option);
+    </script>
+
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row no-gutters">
+          <div class="col-lg-6 video-box">
+            <img src="static/img/about.jpg" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
+
+            <div class="section-title">
+              <h2>About Us</h2>
+              <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.</p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="">More about</a></h4>
+              <p class="description">Music is a kind of behavior that can relax oneself in anxiety. Music can change people's mood and make people happy.</p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-gift"></i></div>
+              <h4 class="title"><a href="">gift</a></h4>
+              <p class="description">Music can make people happy, make appointments, make people lively and cheerful, and make people meet beautiful people.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= About Lists Section ======= -->
+       <section class="about-lists">
+      <div class="container">
+
+        <div class="row no-gutters">
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up">
+            <span>01</span>
+            <h4>Xiami Music</h4>
+            <p>The beating notes of the song rose from the stereo and flowed out in every corner of the house.</p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="100">
+            <span>02</span>
+            <h4>KuWo Music</h4>
+            <p>Send out a low and quiet rhythm sound, as if to tell the secret things that have been hidden for a long time.</p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="200">
+            <span>03</span>
+            <h4>KuGou Music</h4>
+            <p>In fact, every note is taking me away from reality, the closer I am to the end of the production of the new album.</p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="300">
+            <span>04</span>
+            <h4>Cloud Music</h4>
+            <p>Let me sad, let me happy; let me forget myself, let me intoxicated. There is a kind of wonderful music that always tempts me to listen, and I can't avoid it, and that is the music created by human beings.</p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="400">
+            <span>05</span>
+            <h4>QQ Music</h4>
+            <p>That is the music you carry with you, and inadvertently flowing water has already painted you as their background.</p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="500">
+            <span>06</span>
+            <h4>Other about</h4>
+            <p>The sound is like a butterfly spreading its wings, flashing its smart wings, flowing brightly, and precipitating clear light in the distant sky outside the plug.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- End About Lists Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <!-- End Counts Section -->
+
+    <!-- ======= Services Section ======= -->
+    <!-- End Services Section -->
+
+    <!-- ======= Our Portfolio Section ======= -->
+    <!-- End Our Portfolio Section -->
+
+    <!-- ======= Our Team Section ======= -->
+   <!-- End Our Team Section -->
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+   <!-- End Frequently Asked Questions Section -->
+
+    <!-- ======= Contact Us Section ======= -->
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+
+
+ <!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="static/vendor/php-email-form/validate.js"></script>
+  <script src="static/vendor/jquery-sticky/jquery.sticky.js"></script>
+  <script src="static/vendor/venobox/venobox.min.js"></script>
+  <script src="static/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="static/vendor/counterup/counterup.min.js"></script>
+  <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/js/main.js"></script>
+
+</body>
+
+</html>
