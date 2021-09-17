@@ -16,16 +16,16 @@ headers = {
 # 歌单类型链接
 type_url = "https://music.163.com/discover/playlist"
 
-# 连接数据库
-# db = pymysql.connect(
-#     host="localhost",
-#     user="root",
-#     password="123456",
-#     port=3396,
-#     db="cloudmusic"
-# )
+
+db = pymysql.connect(
+    host="localhost",
+    user="root",
+    password="123456",
+    port=3396,
+    db="cloudmusic"
+)
 #
-# cursor = db.cursor()
+cursor = db.cursor()
 
 """获取歌单类型"""
 
