@@ -2,18 +2,19 @@ import csv
 import pymysql
 import time
 import re
-
+import logging
+logging.basicConfig(level=logging.DEBUG)
 conn = pymysql.connect(
     host = '127.0.0.1',
     user = 'root',
     password = '123456',
-    port=3396,
+    port=3306,
     database = 'cloudmusic',
     charset = 'utf8'
 )
 cursor = conn.cursor()
 def main():
-    with open('D:\dev_soft\CloudMusic\Data\playlists3.csv', 'r',encoding='utf-8') as f:
+    with open(r'F:..\Data\playlists3.csv', 'r',encoding='utf-8') as f:
         reader = csv.reader(f)
         print(type(reader))
         for row in reader:
@@ -42,8 +43,8 @@ def main():
                     nickname, gender, userType, vipType, province, city]
 
             play = [createTime, updateTime, playlistType, gender, province, city, name, tags]
-            print(play)
-            save_to_playlists(playlist)
+            logging.debug(play)
+            # save_to_playlists(playlist)
 
         # 歌单ID、歌单名、歌单类型、标签、创建时间、最后更新时间、歌曲数目，播放量、收藏量、转发量、评论数
         # 用户名、性别、用户类型、VIP类型、省份、城市
